@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="@+id/toolbar3"
         app:layout_constraintTop_toTopOf="@id/toolbar3">
 
-        <ImageButton
+        <!--ImageButton
             android:id="@+id/logoButton"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -37,15 +37,23 @@
             android:scaleType="centerInside"
             android:scaleX="@android:dimen/app_icon_size"
             android:scaleY="@android:dimen/app_icon_size"
+            app:srcCompat="@drawable/finallogo" /-->
+        <ImageButton
+            android:id="@+id/logoButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:backgroundTint="#EDEDE3"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/finallogo" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="@string/app_name"
+            app:autoSizeTextType="uniform" />
 
         <ImageButton
             android:id="@+id/panierButton2"

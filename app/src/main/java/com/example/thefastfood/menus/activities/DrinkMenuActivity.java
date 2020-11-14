@@ -1,4 +1,4 @@
-package com.example.thefastfood.menus;
+package com.example.thefastfood.menus.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
