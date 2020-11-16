@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.thefastfood.R;
@@ -53,7 +54,7 @@ public class OffreAdapter extends BaseAdapter {
         TextView name = view.findViewById(R.id.offreName);
         name.setText(offreName);
 
-        ImageButton img = view.findViewById(R.id.imageOffre);
+        ImageView img = view.findViewById(R.id.imageOffre);
 
 
 

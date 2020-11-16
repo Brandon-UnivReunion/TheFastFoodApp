@@ -5,27 +5,47 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="30dp"
     android:paddingBottom="50dp">
 
-    <ImageButton
-        android:id="@+id/imageOffre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/na"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.25" />
-
-    <TextView
-        android:id="@+id/offreName"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/menu"
-        app:layout_constraintEnd_toEndOf="@+id/imageOffre"
-        app:layout_constraintStart_toStartOf="@+id/imageOffre"
-        app:layout_constraintTop_toBottomOf="@+id/imageOffre" />
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:onClick="clickCardTest"
+        android:padding="30dp"
+        app:cardBackgroundColor="#EEEEE4"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/imageOffre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/na" />
+
+            <TextView
+                android:id="@+id/offreName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/menu" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
