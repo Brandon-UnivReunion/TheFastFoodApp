@@ -59,9 +59,11 @@ public class OffreAdapter extends BaseAdapter {
 
 
 
-
-
-
         return view;
+    }
+
+
+    public void setListOffre(ArrayList<Offre> listOffre) {
+        this.listOffre = listOffre;
     }
 }
