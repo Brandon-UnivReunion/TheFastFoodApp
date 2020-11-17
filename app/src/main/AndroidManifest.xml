@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".menus.toolbar.MenuToolbarActivity"></activity>
-        <activity android:name=".menus.activities.DrinkMenuActivity" />
         <activity android:name=".menus.activities.MainMenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
