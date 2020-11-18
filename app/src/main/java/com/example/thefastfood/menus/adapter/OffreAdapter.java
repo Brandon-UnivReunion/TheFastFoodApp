@@ -8,6 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.cardview.widget.CardView;
 
 import com.example.thefastfood.R;
 import com.example.thefastfood.menus.item.Offre;
@@ -16,14 +19,16 @@ import java.util.ArrayList;
 
 public class OffreAdapter extends BaseAdapter {
 
-    private Context context;
-    private ArrayList<Offre> listOffre;
-    private LayoutInflater inflater;
+    protected Context context;
+    protected ArrayList<Offre> listOffre;
+    protected LayoutInflater inflater;
+    protected ArrayList all;
 
     public OffreAdapter(Context context, ArrayList<Offre> listOffre) {
         this.context = context;
         this.listOffre = listOffre;
         this.inflater = LayoutInflater.from(context);
+        this.all = new ArrayList<>();
     }
 
     @Override
@@ -43,6 +48,7 @@ public class OffreAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        all.clear();
 
         view = inflater.inflate(R.layout.adapter_offre,null);
 
@@ -55,6 +61,17 @@ public class OffreAdapter extends BaseAdapter {
         name.setText(offreName);
 
         ImageView img = view.findViewById(R.id.imageOffre);
+
+        CardView cardView = view.findViewById(R.id.cardView);
+
+        all.add(name.getText());
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "name: " + all.get(0) + "///" + R.id.imageOffre, Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 

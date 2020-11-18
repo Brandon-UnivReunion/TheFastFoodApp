@@ -12,6 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/categorieMenu"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="TextView"
+        app:autoSizeTextType="uniform" />
+
     <GridView
         android:id="@+id/menu_gridview"
         android:layout_width="match_parent"
