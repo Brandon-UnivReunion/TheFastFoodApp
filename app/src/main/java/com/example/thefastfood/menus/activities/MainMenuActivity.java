@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.example.thefastfood.MainActivity;
 import com.example.thefastfood.R;
+import com.example.thefastfood.menus.DataBase.CreateurMenu;
+import com.example.thefastfood.menus.DataBase.DatabaseManager;
 import com.example.thefastfood.menus.ListOffres.ListOffres;
 import com.example.thefastfood.menus.ListOffres.ListOffresDrink;
 import com.example.thefastfood.menus.ListOffres.ListOffresHome;
@@ -30,10 +32,17 @@ public class MainMenuActivity extends AppCompatActivity {
     ArrayList<ListOffres> packOffres;
     int idPack;
     MyGestureDetectorListener myGestureDetectorListener;
+    DatabaseManager databaseManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        //
+        Log.i("Main", "onCreate");
+        databaseManager = new DatabaseManager(this);
+//        databaseManager.insertOffre("Offre ", 5, "boisson", true, R.drawable.na);
+        CreateurMenu.initialInsert(databaseManager);
 
         // Crée le gestionnaires d'actions
         myGestureDetectorListener = new MyGestureDetectorListener(this);
