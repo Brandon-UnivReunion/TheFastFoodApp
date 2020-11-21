@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.thefastfood.R;
 import com.example.thefastfood.menus.dataBase.CreateurMenu;
@@ -20,6 +21,7 @@ import com.example.thefastfood.menus.listOffres.ListOffres;
 import com.example.thefastfood.menus.listOffres.ListOffresDrink;
 import com.example.thefastfood.menus.listOffres.ListOffresHome;
 import com.example.thefastfood.menus.adapter.OffreAdapter;
+import com.example.thefastfood.menus.panier.PanierPopUp;
 
 import java.util.ArrayList;
 
@@ -86,17 +88,19 @@ public class MainMenuActivity extends AppCompatActivity {
             Log.i("SharedP2", String.valueOf(sharedPreferences.getBoolean(FLAG_DB, false)));
         }
 
-
-
-
-
     }
 
+    public void panierClick(View view){
+
+        PanierPopUp panierPopUp = new PanierPopUp(this, new DatabaseManager(this));
+        panierPopUp.show();
+    }
 
     public void clickCardTest(View view){
 //        Intent intent = new Intent(this, MainActivity.class);
 //        startActivity(intent);
-        CardView c = (CardView) view;
+//        CardView c = (CardView) view;
+        Toast.makeText(this, "On est la", Toast.LENGTH_SHORT);
 
 
     }

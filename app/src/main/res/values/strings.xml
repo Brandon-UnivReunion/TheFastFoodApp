@@ -2,4 +2,8 @@
     <string name="app_name">The Fast Food</string>
     <string name="menu">menu</string>
     <string name="euro">€</string>
+    <string name="panier">Panier</string>
+    <string name="valider">Valider</string>
+    <string name="vider">Vider</string>
+    <string name="annuler">Annuler</string>
 </resources>

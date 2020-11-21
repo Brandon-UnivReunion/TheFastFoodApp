@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.thefastfood.menus.activities.MainMenuActivity;
+import com.example.thefastfood.menus.dataBase.DatabaseManager;
+import com.example.thefastfood.menus.panier.PanierPopUp;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,5 +24,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainMenuActivity.class);
         startActivity(intent);
 //        finish();
+    }
+
+    public void panierClick(View view){
+
+        PanierPopUp panierPopUp = new PanierPopUp(this, new DatabaseManager(this));
+        panierPopUp.show();
     }
 }
