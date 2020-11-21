@@ -1,6 +1,7 @@
 package com.example.thefastfood.menus.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,16 +44,16 @@ public class OffreAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         all.clear();
 
         view = inflater.inflate(R.layout.adapter_offre,null);
 
-        Offre offre = getItem(i);
+        final Offre offre = getItem(i);
 
         String offreName = offre.getName();
         int offreImg = offre.getPathImg();
@@ -61,6 +62,9 @@ public class OffreAdapter extends BaseAdapter {
         name.setText(offreName);
 
         ImageView img = view.findViewById(R.id.imageOffre);
+        // TODO changer l'image
+
+        // TODO ajouter le prix
 
         CardView cardView = view.findViewById(R.id.cardView);
 
@@ -69,7 +73,11 @@ public class OffreAdapter extends BaseAdapter {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "name: " + all.get(0) + "///" + R.id.imageOffre, Toast.LENGTH_SHORT).show();
+                // TODO Ajout au panier des éléments
+                ArrayList a = (ArrayList) all.clone();
+                Toast.makeText(context, i+"name: " + offre.getId() + "///" + R.id.imageOffre, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, i+"name: " + all.get(0) + "///" + R.id.imageOffre, Toast.LENGTH_SHORT).show();
+                Log.d("onclickview","h");
             }
         });
 

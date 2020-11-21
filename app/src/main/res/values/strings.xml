@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">The Fast Food</string>
     <string name="menu">menu</string>
+    <string name="euro">€</string>
 </resources>

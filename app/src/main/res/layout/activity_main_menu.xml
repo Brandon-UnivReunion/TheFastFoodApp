@@ -25,5 +25,6 @@
         android:id="@+id/menu_gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contextClickable="false"
         android:numColumns="auto_fit" />
 </LinearLayout>

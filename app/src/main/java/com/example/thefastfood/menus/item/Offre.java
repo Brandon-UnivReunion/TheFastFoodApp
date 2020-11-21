@@ -32,6 +32,10 @@ public class Offre {
         this.popularité = popularité;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public int getPathImg() {
         return pathImg;
     }
