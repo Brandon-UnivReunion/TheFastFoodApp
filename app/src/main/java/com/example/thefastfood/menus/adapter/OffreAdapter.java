@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 
 import com.example.thefastfood.R;
+import com.example.thefastfood.menus.dataBase.DatabaseManager;
 import com.example.thefastfood.menus.item.Offre;
 
 import java.util.ArrayList;
@@ -23,13 +23,13 @@ public class OffreAdapter extends BaseAdapter {
     protected Context context;
     protected ArrayList<Offre> listOffre;
     protected LayoutInflater inflater;
-    protected ArrayList all;
+    protected DatabaseManager databaseManager;
 
-    public OffreAdapter(Context context, ArrayList<Offre> listOffre) {
+    public OffreAdapter(Context context, ArrayList<Offre> listOffre, DatabaseManager databaseManager) {
         this.context = context;
         this.listOffre = listOffre;
         this.inflater = LayoutInflater.from(context);
-        this.all = new ArrayList<>();
+        this.databaseManager = databaseManager;
     }
 
     @Override
@@ -49,35 +49,30 @@ public class OffreAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
-        all.clear();
 
         view = inflater.inflate(R.layout.adapter_offre,null);
 
         final Offre offre = getItem(i);
 
-        String offreName = offre.getName();
-        int offreImg = offre.getPathImg();
-
         TextView name = view.findViewById(R.id.offreName);
-        name.setText(offreName);
+        name.setText(offre.getName());
 
-        ImageView img = view.findViewById(R.id.imageOffre);
-        // TODO changer l'image
+        ImageView img = view.findViewById(R.id.offreImg);
+        img.setImageResource(offre.getPathImg());
 
-        // TODO ajouter le prix
+        TextView prix = view.findViewById(R.id.offrePrix);
+        prix.setText(offre.getPrix()+context.getString(R.string.euro));
 
         CardView cardView = view.findViewById(R.id.cardView);
-
-        all.add(name.getText());
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Ajout au panier des éléments
-                ArrayList a = (ArrayList) all.clone();
-                Toast.makeText(context, i+"name: " + offre.getId() + "///" + R.id.imageOffre, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(context, i+"name: " + all.get(0) + "///" + R.id.imageOffre, Toast.LENGTH_SHORT).show();
-                Log.d("onclickview","h");
+                Log.d("Panier", "Ajout panier");
+                databaseManager.insertItem(offre.getId());
+                Toast.makeText(context, "Ajout "+offre.getName()+" au panier", Toast.LENGTH_SHORT).show();
+
             }
         });
 

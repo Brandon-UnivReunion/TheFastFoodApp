@@ -1,4 +1,4 @@
-package com.example.thefastfood.menus.DataBase;
+package com.example.thefastfood.menus.dataBase;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,7 +8,6 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.example.thefastfood.R;
 import com.example.thefastfood.menus.item.Offre;
 
 import java.util.ArrayList;
@@ -36,15 +35,25 @@ public class DatabaseManager extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i("DATABASE", "onCreate");
+        // Table des offres
         String strSql = "create table Offres ("
                 + "    id integer primary key autoincrement,"
                 + "    nom text not null,"
                 + "    prix integer not null,"
                 + "    categorie text not null,"
                 + "    populaire boolean not null,"
-                + "    imgR int not null"
+                + "    imgR integer not null"
                 + ")";
         db.execSQL( strSql );
+
+        // Table du panier
+        strSql = "create table Panier ("
+                + "    id integer primary key autoincrement,"
+                + "    idOffre integer not null"
+                + ")";
+        db.execSQL( strSql );
+
+        // TODO historique d'achat
 
 //        CreateurMenu.initialInsert(this);
 
@@ -64,38 +73,84 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // Pas de maj pour le moment
     }
 
+    /**
+     * Insert une offre dans la table offre
+     * @param nom
+     * @param prix
+     * @param categorie
+     * @param populaire
+     * @param imgr
+     */
     public void insertOffre(String nom, int prix, String categorie, boolean populaire, int imgr ){
         Log.i("DATABASE", "insertOffre");
         nom = nom.replace("'","''");
         categorie = categorie.replace("'","''");
-        String inser = "insert into Offres (nom, prix, categorie, populaire, imgr) values (" +
+        String insert = "insert into Offres (nom, prix, categorie, populaire, imgr) values (" +
                 "'" + nom + "', " + prix + ", '" + categorie+ "' ," + populaire +", " + imgr + " )";
-        this.getWritableDatabase().execSQL( inser );
+        this.getWritableDatabase().execSQL( insert );
 
     }
 
+    /**
+     * Renvoie la selection sur la table offre sous forme de liste d'offres
+     * @param condition
+     * @return
+     */
     public ArrayList<Offre> readOffre(@Nullable String condition){
         ArrayList<Offre> offres = new ArrayList<Offre>();
-
         if(condition == null){
             condition = "1";
         }
 
-        Cursor cursor = this.getReadableDatabase().query("Offres",null, condition,null,null,null,null);
+        String[] select = {"id", "nom", "prix",  "imgR"};
+        Cursor cursor = this.getReadableDatabase().query("Offres",select, condition,null,null,null,null);
 
         cursor.moveToFirst();
 
         while(!cursor.isAfterLast()){
-            Offre current = new Offre(cursor.getInt(0),cursor.getString(1), cursor.getInt(2),cursor.getString(3),cursor.getInt(4)==1,cursor.getInt(5));
+            Offre current = new Offre(cursor.getInt(0),cursor.getString(1), cursor.getInt(2),cursor.getInt(3));
             offres.add(current);
             cursor.moveToNext();
         }
         cursor.close();
-
         return offres;
     }
 
+    /**
+     * Insert un item au panier
+     * @param idOffre
+     */
+    public void insertItem(int idOffre){
+        Log.i("DATABASE", "insertItem");
+        String insert = String.format("insert into Panier (idOffre) values ( %d )", idOffre);
+        this.getWritableDatabase().execSQL( insert );
+    }
 
+    /**
+     * Renvoie la liste des offres associé au panier
+     * @return
+     */
+    public ArrayList<Offre> readPanier(){
+        ArrayList<Offre> offres = new ArrayList<Offre>();
+
+        String from = "Panier " +
+                        "INNER JOIN Offres " +
+                        "ON Panier.idOffre = Offres.id";
+        String[] select = {"Offres.id", "Offres.nom", "Offres.prix",  "Offres.imgR", "Panier.id"};
+
+
+        Cursor cursor = this.getReadableDatabase().query(from,select, null,null,null,null,null);
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()){
+            Offre current = new Offre(cursor.getInt(0),cursor.getString(1), cursor.getInt(2),cursor.getInt(3), cursor.getInt(4));
+            offres.add(current);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return offres;
+    }
 
 
 }

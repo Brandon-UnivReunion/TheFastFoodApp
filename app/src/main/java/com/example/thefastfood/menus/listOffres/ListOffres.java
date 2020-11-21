@@ -1,4 +1,4 @@
-package com.example.thefastfood.menus.ListOffres;
+package com.example.thefastfood.menus.listOffres;
 
 import com.example.thefastfood.menus.item.Offre;
 

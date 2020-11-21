@@ -1,7 +1,6 @@
-package com.example.thefastfood.menus.DataBase;
+package com.example.thefastfood.menus.dataBase;
 
 import com.example.thefastfood.R;
-import com.example.thefastfood.menus.item.Offre;
 
 public class CreateurMenu {
     public static void initialInsert(DatabaseManager dbm){

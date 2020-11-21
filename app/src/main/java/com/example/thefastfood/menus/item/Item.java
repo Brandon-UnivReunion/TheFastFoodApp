@@ -1,8 +1,6 @@
 package com.example.thefastfood.menus.item;
 
-import androidx.annotation.Nullable;
-
-public class Offre{
+public class Item {
     // code de l'image representant l'offre dans les ressources
     int pathImg;
     // name nom de l'offre
@@ -11,19 +9,15 @@ public class Offre{
     int prix;
     // id de l'offre
     int id;
-    // id dans le panier si il provient du panier
-    int idP;
 
-
-    public Offre(int id, String name, int prix, int pathImg, int idP) {
+    public Item(int pathImg, String name) {
         this.pathImg = pathImg;
         this.name = name;
-        this.prix = prix;
-        this.id = id;
-        this.idP = idP;
     }
 
-    public Offre(int id, String name, int prix, int pathImg) {
+
+
+    public Item(int id, String name, int prix, int pathImg) {
         this.pathImg = pathImg;
         this.name = name;
         this.prix = prix;
@@ -43,5 +37,7 @@ public class Offre{
     public String getName() {
         return name;
     }
+
+
 
 }

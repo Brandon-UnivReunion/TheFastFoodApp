@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,15 +13,13 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.example.thefastfood.MainActivity;
 import com.example.thefastfood.R;
-import com.example.thefastfood.menus.DataBase.CreateurMenu;
-import com.example.thefastfood.menus.DataBase.DatabaseManager;
-import com.example.thefastfood.menus.ListOffres.ListOffres;
-import com.example.thefastfood.menus.ListOffres.ListOffresDrink;
-import com.example.thefastfood.menus.ListOffres.ListOffresHome;
+import com.example.thefastfood.menus.dataBase.CreateurMenu;
+import com.example.thefastfood.menus.dataBase.DatabaseManager;
+import com.example.thefastfood.menus.listOffres.ListOffres;
+import com.example.thefastfood.menus.listOffres.ListOffresDrink;
+import com.example.thefastfood.menus.listOffres.ListOffresHome;
 import com.example.thefastfood.menus.adapter.OffreAdapter;
-import com.example.thefastfood.menus.item.Offre;
 
 import java.util.ArrayList;
 
@@ -43,6 +40,7 @@ public class MainMenuActivity extends AppCompatActivity {
         Log.i("Main", "onCreate");
         // initialisation de la BDD et remplissage si c'est le premier lancement
         initializeDB();
+        Log.i("Main", "onCreate2");
 
         // Crée le gestionnaires d'actions
         myGestureDetectorListener = new MyGestureDetectorListener(this);
@@ -59,7 +57,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         // Recuperes la GridView et lui assigne un adapter
         gridView = findViewById(R.id.menu_gridview);
-        gridView.setAdapter(new OffreAdapter(this, packOffres.get(idPack).getList()));
+        gridView.setAdapter(new OffreAdapter(this, packOffres.get(idPack).getList(), databaseManager));
 
 
 
@@ -147,7 +145,7 @@ public class MainMenuActivity extends AppCompatActivity {
                             if (idPack<packOffres.size()-1){
                                 idPack += 1;
                                 titleTV.setText(packOffres.get(idPack).getTitle());
-                                gridView.setAdapter(new OffreAdapter(context, packOffres.get(idPack).getList()));
+                                gridView.setAdapter(new OffreAdapter(context, packOffres.get(idPack).getList(), databaseManager));
                             }
                         }
 
@@ -156,7 +154,7 @@ public class MainMenuActivity extends AppCompatActivity {
                             if (idPack>0){
                                 idPack -= 1;
                                 titleTV.setText(packOffres.get(idPack).getTitle());
-                                gridView.setAdapter(new OffreAdapter(context, packOffres.get(idPack).getList()));
+                                gridView.setAdapter(new OffreAdapter(context, packOffres.get(idPack).getList(),databaseManager));
                             }
                         }
 

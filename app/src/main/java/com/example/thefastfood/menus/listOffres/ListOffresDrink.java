@@ -1,10 +1,6 @@
-package com.example.thefastfood.menus.ListOffres;
+package com.example.thefastfood.menus.listOffres;
 
-import com.example.thefastfood.R;
-import com.example.thefastfood.menus.DataBase.DatabaseManager;
-import com.example.thefastfood.menus.item.Offre;
-
-import java.util.ArrayList;
+import com.example.thefastfood.menus.dataBase.DatabaseManager;
 
 public class ListOffresDrink extends ListOffres {
 
