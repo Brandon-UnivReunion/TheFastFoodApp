@@ -152,5 +152,21 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return offres;
     }
 
+    /**
+     * Vide le panier
+     */
+    public void videPanier(){
+        String delete = "delete from Panier" ;
+        this.getWritableDatabase().execSQL( delete );
+    }
+
+    /**
+     * Validation du panier
+     */
+    public void validePanier(){
+        String delete = "delete from Panier" ;
+        this.getWritableDatabase().execSQL( delete );
+    }
+
 
 }

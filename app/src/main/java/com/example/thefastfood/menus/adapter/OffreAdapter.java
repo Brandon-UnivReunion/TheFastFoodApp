@@ -1,6 +1,7 @@
 package com.example.thefastfood.menus.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,14 @@ public class OffreAdapter extends BaseAdapter {
                 // TODO Ajout au panier des éléments
                 Log.d("Panier", "Ajout panier");
                 databaseManager.insertItem(offre.getId());
+
+                // Notifier que le panier à été utilisé
+                final String SHARED_PREFERENCES_NAME = "DB";
+                SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_NAME, context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("panier", true);
+                editor.apply();
+
                 Toast.makeText(context, "Ajout "+offre.getName()+" au panier", Toast.LENGTH_SHORT).show();
 
             }

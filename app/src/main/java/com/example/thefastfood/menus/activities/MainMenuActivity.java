@@ -91,9 +91,18 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void panierClick(View view){
+        final String SHARED_PREFERENCES_NAME = "DB";
 
-        PanierPopUp panierPopUp = new PanierPopUp(this, new DatabaseManager(this));
-        panierPopUp.show();
+        // Persistence pour savoir si le panier à déjà été utilisé
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+
+
+        if(sharedPreferences.getBoolean("panier", false) && databaseManager.readPanier().size() != 0) {
+            PanierPopUp panierPopUp = new PanierPopUp(this, databaseManager);
+            panierPopUp.show();
+        }else{
+            Toast.makeText(this, "Le panier est vide !", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void clickCardTest(View view){
