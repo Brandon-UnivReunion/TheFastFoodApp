@@ -12,10 +12,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.thefastfood.maps.fragments.MapsFragment;
 import com.example.thefastfood.menus.activities.MainMenuActivity;
 import com.example.thefastfood.menus.dataBase.DatabaseManager;
 import com.example.thefastfood.menus.fragments.AfficheMenuFragment;
 import com.example.thefastfood.menus.panier.PanierPopUp;
+import com.google.android.gms.maps.MapFragment;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -34,7 +36,10 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void menuClick(View view){
-        displayFragment(new AfficheMenuFragment());
+        displayFragment(new AfficheMenuFragment(),"menu");
+    }
+    public void mapsClick(View view){
+        displayFragment(new MapsFragment(), "maps");
     }
 
     public void panierClick(View view){
@@ -57,12 +62,14 @@ public class MainActivity extends AppCompatActivity  {
      * Affiche le fragment
      * @param fragment
      */
-    private void displayFragment(Fragment fragment){
+    private void displayFragment(Fragment fragment, String tag){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, fragment, "currentFragment");
+        fragmentTransaction.replace(R.id.framel, fragment, tag);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
+
+
 
     /**
      * Gestion des evenements
@@ -74,7 +81,7 @@ public class MainActivity extends AppCompatActivity  {
         // TODO implement fragment gesture listener
 //        myGestureDetectorListener.onTouchEvent(ev);
         Log.d("dispatch2", "dispatchTouchEvent");
-        AfficheMenuFragment afficheMenuFragment = (AfficheMenuFragment) getSupportFragmentManager().findFragmentByTag("currentFragment");
+        AfficheMenuFragment afficheMenuFragment = (AfficheMenuFragment) getSupportFragmentManager().findFragmentByTag("menu");
         Log.d("dispatch2", String.valueOf(afficheMenuFragment));
         if(afficheMenuFragment != null && afficheMenuFragment instanceof AfficheMenuFragment)
             afficheMenuFragment.actionDispatchTouchEvent(ev);
