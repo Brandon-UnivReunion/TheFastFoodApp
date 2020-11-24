@@ -6,7 +6,6 @@
 
     <!-- Global-->
     <string name="error">Erreur !</string>
-    <string name="success">Succès !</string>
 
     <!-- Edit Profil Screen-->
     <string name="username"> Pseudo </string>
@@ -25,16 +24,12 @@
     <string name="googleErr">Une erreur s\'est produite lors de l\'authentification Google</string>
 
     <!-- Register Screen-->
-    <string name="textRegister">S\'INSCRIRE</string>
-    <string name="textRErr"></string>
     <string name="regToLog">Déjà un compte ?</string>
     <string name="regBtn">ENREGISTRER</string>
-    <string name="passwordConf">Confirmation</string>
     <string name="short_pw">Veuillez entrer un mot de passe à 8 caractères !</string>
     <string name="reg_fail">Erreur ! Veuillez ré-essayer dans un instant !</string>
 
     <!-- Reset Password Sreen -->
-    <string name="textRPassword">RECUPERER SON MOT DE PASSE</string>
     <string name="resetBtn">RECUPERER</string>
     <string name="cancelRPBtn">ANNULER</string>
     <string name="email_sent">E-mail sent !</string>
@@ -47,8 +42,6 @@
     <string name="profileItem">Profil</string>
 
     <!-- Fragment Map -->
-    <string name="mapItem">Map</string>
-
 
 
     <string name="menu">menu</string>

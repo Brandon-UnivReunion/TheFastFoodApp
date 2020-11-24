@@ -34,15 +34,13 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity android:name="com.activities.SplashActivity">
-        <activity android:name=".menus.toolbar.MenuToolbarActivity"></activity>
-        <activity android:name=".menus.activities.MainMenuActivity" />
-        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".menus.toolbar.MenuToolbarActivity"></activity>
 
         <activity
             android:name="com.activities.LoginActivity"

@@ -5,15 +5,23 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.activities.LoginActivity;
 import com.example.thefastfood.R;
+import com.example.thefastfood.maps.fragments.MapsFragment;
+import com.example.thefastfood.menus.dataBase.DatabaseManager;
+import com.example.thefastfood.menus.fragments.AfficheMenuFragment;
+import com.example.thefastfood.menus.panier.PanierPopUp;
 import com.fragments.MapFragment;
 import com.fragments.ProfileFragment;
 import com.fragments.StoreFragment;
@@ -31,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
 
-    LinearLayout bottomBar_item1, bottomBar_item2, bottomBar_item3;
+    LinearLayout bottomBar_item1, bottomBar_item2, bottomBar_item3, empty_basket;
     ImageView item1IV, item2IV, item3IV;
     TextView item1TV, item2TV, item3TV;
 
@@ -83,6 +91,27 @@ public class MainActivity extends AppCompatActivity {
         item2TV = findViewById(R.id.item2TV);
         item3TV = findViewById(R.id.item3TV);
 
+        empty_basket = findViewById(R.id.empty_basket);
+
+        empty_basket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String SHARED_PREFERENCES_NAME = "DB";
+                DatabaseManager databaseManager = new DatabaseManager(MainActivity.this);
+
+                // Persistence pour savoir si le panier à déjà été utilisé
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+
+
+                if(sharedPreferences.getBoolean("panier", false) && databaseManager.readPanier().size() != 0) {
+                    PanierPopUp panierPopUp = new PanierPopUp(MainActivity.this, databaseManager);
+                    panierPopUp.show();
+                }else{
+                    Toast.makeText(MainActivity.this, "Le panier est vide !", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         //Appel à la méthode de mise à jour de la bottom bar selon le fragment actif
         updateBottomBarItemsUI(bottomBar_item1_selectionned,bottomBar_item2_selectionned,bottomBar_item3_selectionned);
 
@@ -122,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
     }
 
     /**
@@ -153,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             item1TV.setTextColor(Color.rgb(194,149,27));
             item1IV.setImageResource(R.drawable.store_selected);
 
-            showFragment(new StoreFragment());
+            showFragment(new AfficheMenuFragment(), "menu");
             System.out.println("Shop Selected from main");
         }else{
             bottomBar_item1.setBackgroundColor(Color.rgb(237,236,227));
@@ -180,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
             item3TV.setTextColor(Color.rgb(194,149,27));
             item3IV.setImageResource(R.drawable.location_selected);
 
-            showFragment(new MapFragment());
+            showFragment(new MapsFragment());
             System.out.println("Shop Selected from main");
 
         }else{
@@ -205,6 +236,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * méthode d'affichage des fragments avec tag
+     * @param fragment
+     * @param tag
+     */
+    private void showFragment(Fragment fragment, String tag) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.page, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+    }
+
+    /**
      * méthode permettant la deconnexion de l'utilisateur
      */
     public void signOut(){
@@ -212,5 +256,19 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    /**
+     * Gestion des evenements
+     * @param ev
+     * @return
+     */
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        AfficheMenuFragment afficheMenuFragment = (AfficheMenuFragment) getSupportFragmentManager().findFragmentByTag("menu");
+
+        if(afficheMenuFragment instanceof AfficheMenuFragment)
+            afficheMenuFragment.actionDispatchTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 }

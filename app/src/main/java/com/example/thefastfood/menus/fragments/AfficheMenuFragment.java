@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thefastfood.R;
-import com.example.thefastfood.menus.activities.MainMenuActivity;
 import com.example.thefastfood.menus.adapter.OffreAdapter;
 import com.example.thefastfood.menus.dataBase.CreateurMenu;
 import com.example.thefastfood.menus.dataBase.DatabaseManager;
