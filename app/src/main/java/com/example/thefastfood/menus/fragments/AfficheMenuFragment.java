@@ -21,8 +21,12 @@ import com.example.thefastfood.menus.adapter.OffreAdapter;
 import com.example.thefastfood.menus.dataBase.CreateurMenu;
 import com.example.thefastfood.menus.dataBase.DatabaseManager;
 import com.example.thefastfood.menus.listOffres.ListOffres;
+import com.example.thefastfood.menus.listOffres.ListOffresBurger;
+import com.example.thefastfood.menus.listOffres.ListOffresDessert;
 import com.example.thefastfood.menus.listOffres.ListOffresDrink;
 import com.example.thefastfood.menus.listOffres.ListOffresPop;
+import com.example.thefastfood.menus.listOffres.ListOffresSalades;
+import com.example.thefastfood.menus.listOffres.ListOffresSnacks;
 import com.example.thefastfood.menus.panier.PanierPopUp;
 
 import java.util.ArrayList;
@@ -70,7 +74,12 @@ public class AfficheMenuFragment extends Fragment {
         // Création des offres
         packOffres = new ArrayList<ListOffres>();
         packOffres.add(new ListOffresPop(databaseManager));
+        packOffres.add(new ListOffresBurger(databaseManager));
+        packOffres.add(new ListOffresSalades(databaseManager));
+        packOffres.add(new ListOffresSnacks(databaseManager));
+        packOffres.add(new ListOffresDessert(databaseManager));
         packOffres.add(new ListOffresDrink(databaseManager));
+
         idPack = 0;
 
         // Recuperes la textview
