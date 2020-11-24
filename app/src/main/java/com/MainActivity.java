@@ -242,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void showFragment(Fragment fragment, String tag) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.page, fragment);
+        transaction.replace(R.id.page, fragment, tag);
         transaction.addToBackStack(null);
         transaction.commit();
 
@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         AfficheMenuFragment afficheMenuFragment = (AfficheMenuFragment) getSupportFragmentManager().findFragmentByTag("menu");
-
+        Log.d("dispatch2", String.valueOf(afficheMenuFragment));
         if(afficheMenuFragment instanceof AfficheMenuFragment)
             afficheMenuFragment.actionDispatchTouchEvent(ev);
         return super.dispatchTouchEvent(ev);
