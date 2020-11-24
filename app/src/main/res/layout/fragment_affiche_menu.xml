@@ -21,7 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contextClickable="false"
-        android:numColumns="auto_fit" />
+        android:numColumns="auto_fit"
+        />
 
 
 

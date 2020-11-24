@@ -23,7 +23,7 @@ public class CreateurMenu {
         dbm.insertOffre("La Fermière", 6, SALADS, false, R.drawable.chiken_salad);
 
         //Snacks
-        dbm.insertOffre("Frites S", 1, SNACKS, false, R.drawable.small_fries;
+        dbm.insertOffre("Frites S", 1, SNACKS, false, R.drawable.small_fries);
         dbm.insertOffre("Frites M", 2, SNACKS, false, R.drawable.medium_fries);
         dbm.insertOffre("Frites L", 4, SNACKS, POPULAR, R.drawable.large_fries);
         dbm.insertOffre("Les Fondants x5", 5, SNACKS, POPULAR, R.drawable.cheese_snack);
