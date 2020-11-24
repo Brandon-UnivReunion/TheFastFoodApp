@@ -2,9 +2,9 @@ package com.example.thefastfood.menus.listOffres;
 
 import com.example.thefastfood.menus.dataBase.DatabaseManager;
 
-public class ListOffresHome extends ListOffres {
+public class ListOffresPop extends ListOffres {
 
-    public ListOffresHome(DatabaseManager dm) {
+    public ListOffresPop(DatabaseManager dm) {
         super();
         title = "Populaire";
         list = dm.readOffre("populaire = 1");

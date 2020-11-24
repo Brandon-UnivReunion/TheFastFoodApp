@@ -22,7 +22,7 @@ import com.example.thefastfood.menus.dataBase.CreateurMenu;
 import com.example.thefastfood.menus.dataBase.DatabaseManager;
 import com.example.thefastfood.menus.listOffres.ListOffres;
 import com.example.thefastfood.menus.listOffres.ListOffresDrink;
-import com.example.thefastfood.menus.listOffres.ListOffresHome;
+import com.example.thefastfood.menus.listOffres.ListOffresPop;
 import com.example.thefastfood.menus.panier.PanierPopUp;
 
 import java.util.ArrayList;
@@ -69,7 +69,7 @@ public class AfficheMenuFragment extends Fragment {
 
         // Création des offres
         packOffres = new ArrayList<ListOffres>();
-        packOffres.add(new ListOffresHome(databaseManager));
+        packOffres.add(new ListOffresPop(databaseManager));
         packOffres.add(new ListOffresDrink(databaseManager));
         idPack = 0;
 
