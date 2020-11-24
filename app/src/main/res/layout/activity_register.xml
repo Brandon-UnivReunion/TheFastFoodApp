@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.activities.RegisterActivity"
+    android:background="@color/bgColor">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topLLRA"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:id="@+id/logoRA"
+            android:layout_width="174dp"
+            android:layout_height="195dp"
+            app:layout_constraintLeft_toLeftOf="@+id/topLLRA"
+            app:layout_constraintRight_toRightOf="@id/topLLRA"
+            app:layout_constraintTop_toTopOf="@+id/topLLRA"
+            app:layout_constraintBottom_toBottomOf="@+id/topLLRA"
+            android:src="@drawable/finallogo"/>
+
+        <TextView
+            android:id="@+id/errorTextViewRA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logoRA"
+            android:layout_marginTop="20dp"
+            android:text="@string/textErr"
+            android:textColor="@color/errorColor"
+            android:fontFamily="@font/breeserif"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- LinearLayout comportant les EditText mail et mot de passe -->
+    <LinearLayout
+        android:id="@+id/llReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:orientation="vertical"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/mailRegTField"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/addressMail"
+            android:inputType="textPersonName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:errorEnabled="true"
+            app:boxStrokeColor="@color/blackColor"
+            app:hintTextColor="@color/blackColor"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mailRegTEField"
+                android:inputType="textPersonName"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:errorEnabled="true"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passRegTField"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            app:endIconMode="password_toggle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/blackColor"
+            app:hintTextColor="@color/blackColor"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passRegTEField"
+                android:inputType="textPassword"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <!-- LinearLayout comportant un TextView de redirection vers l'activité de connexion et un bouton d'inscription -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llReg">
+
+        <TextView
+            android:id="@+id/regToLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llReg"
+            android:layout_marginTop="10dp"
+            android:text="@string/regToLog"
+            android:textColor="@color/blackColor"
+            android:fontFamily="@font/breeserif"
+            android:textSize="15dp"
+            />
+
+        <Button
+            android:id="@+id/regBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/regToLog"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="10dp"
+            android:text="@string/regBtn"
+            android:fontFamily="@font/breeserif"
+            android:backgroundTint="@color/blackColor"
+            android:shadowColor="@color/blackColor"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"/>
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

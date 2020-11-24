@@ -1,3 +1,54 @@
 <resources>
+    <!-- Nom de l'application -->
     <string name="app_name">The Fast Food</string>
+
+    <!-- Général -->
+
+    <!-- Global-->
+    <string name="error">Erreur !</string>
+    <string name="success">Succès !</string>
+
+    <!-- Edit Profil Screen-->
+    <string name="username"> Pseudo </string>
+    <string name="phoneNum"> N° de téléphone </string>
+
+    <!-- Ecran de connexion -->
+    <string name="addressMail">Adresse Mail</string>
+    <string name="password">Mot de passe</string>
+    <string name="logToReg">Pas encore de compte ?</string>
+    <string name="logBtn">CONNEXION</string>
+    <string name="resetPass">Mot de passe Oublié ?</string>
+    <string name="textErr"></string>
+    <string name="mail_empty">Veuillez entrer un E-mail !</string>
+    <string name="pw_empty">Veuillez entrer un Mot de passe !</string>
+    <string name="login_fail">Aucun utilisateur trouvé !</string>
+    <string name="googleErr">Une erreur s\'est produite lors de l\'authentification Google</string>
+
+    <!-- Register Screen-->
+    <string name="textRegister">S\'INSCRIRE</string>
+    <string name="textRErr"></string>
+    <string name="regToLog">Déjà un compte ?</string>
+    <string name="regBtn">ENREGISTRER</string>
+    <string name="passwordConf">Confirmation</string>
+    <string name="short_pw">Veuillez entrer un mot de passe à 8 caractères !</string>
+    <string name="reg_fail">Erreur ! Veuillez ré-essayer dans un instant !</string>
+
+    <!-- Reset Password Sreen -->
+    <string name="textRPassword">RECUPERER SON MOT DE PASSE</string>
+    <string name="resetBtn">RECUPERER</string>
+    <string name="cancelRPBtn">ANNULER</string>
+    <string name="email_sent">E-mail sent !</string>
+
+
+    <!-- Fragment Shop-->
+    <string name="shopItem">Shop</string>
+
+    <!-- Fragment Profile -->
+    <string name="profileItem">Profil</string>
+
+    <!-- Fragment Map -->
+    <string name="mapItem">Map</string>
+
+
+
 </resources>

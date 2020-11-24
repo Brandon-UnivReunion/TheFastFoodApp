@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "856078427185",
+    "firebase_url": "https://the-fast-food.firebaseio.com",
+    "project_id": "the-fast-food",
+    "storage_bucket": "the-fast-food.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856078427185:android:03c4aa3a672398e69f2110",
+        "android_client_info": {
+          "package_name": "com.example.thefastfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856078427185-rk3u3c7ber0u7pe072iukv7e1a92gsrh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.thefastfood",
+            "certificate_hash": "d5de315fd9890599ab902b6150cbe9033dc3d826"
+          }
+        },
+        {
+          "client_id": "856078427185-85k9f27m5q88503mfclcc9not2re3b95.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOZRxmDBYS6kDZ1pNzhTpTDKZONxR61Bo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856078427185-85k9f27m5q88503mfclcc9not2re3b95.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

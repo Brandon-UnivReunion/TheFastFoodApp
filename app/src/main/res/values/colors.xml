@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimaryDark">#151515</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <!-- Colorisations personnelles -->
+    <color name="bgColor">#EDECE3</color>
+    <color name="errorColor">#6E0B14</color>
+    <color name="blackColor">#151515</color>
+
+    <!-- Bottom Bar -->
+    <color name="bottomBarBackgroundColorSelected">#CCCBC3</color>
+    <color name="bottomBarTextColorSelected">#C2951B</color>
 </resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Font BreeSerif-->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/breeserif"
+        tools:targetApi="o" />
+
+    <!-- Font Nautilus -->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/nautilus"
+        tools:targetApi="o" />
+
+</font-family>
