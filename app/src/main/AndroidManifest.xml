@@ -7,6 +7,9 @@
 
     <uses-feature android:name="android.hardware.type.watch" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -31,6 +34,9 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity android:name="com.activities.SplashActivity">
+        <activity android:name=".menus.toolbar.MenuToolbarActivity"></activity>
+        <activity android:name=".menus.activities.MainMenuActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,6 +49,10 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDZCg0w7aZKdXFRKKQ9DH0wh2nErkbkX6I" />
 
     </application>
 

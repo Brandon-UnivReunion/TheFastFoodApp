@@ -51,4 +51,12 @@
 
 
 
+    <string name="menu">menu</string>
+    <string name="euro">€</string>
+    <string name="panier">Panier</string>
+    <string name="valider">Valider</string>
+    <string name="vider">Vider</string>
+    <string name="annuler">Annuler</string>
+    <string name="totalPrix">"Total : "</string>
+    <string name="zero">0</string>
 </resources>
