@@ -58,6 +58,7 @@ public class AfficheMenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // TODO initialize db on view
         View fragmentView = inflater.inflate(R.layout.fragment_affiche_menu, container, false);
         Log.i("Main", "onCreate");
         // initialisation de la BDD et remplissage si c'est le premier lancement
