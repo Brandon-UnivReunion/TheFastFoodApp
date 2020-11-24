@@ -44,6 +44,15 @@
     <!-- Fragment Map -->
     <string name="mapItem">Map</string>
 
+    <!-- slides titles -->
+    <string name="burgersTitle">Burgers</string>
+    <string name="snacksTitle">Snacks</string>
+    <string name="saladsTitle">Salades</string>
+    <string name="dessertsTitle">Desserts</string>
+    <string name="drinksTitle">Boissons</string>
+    <string name="popularTitle">Populaires</string>
+
+
 
     <string name="menu">menu</string>
     <string name="euro">€</string>
@@ -53,4 +62,6 @@
     <string name="annuler">Annuler</string>
     <string name="totalPrix">"Total : "</string>
     <string name="zero">0</string>
+
+
 </resources>
