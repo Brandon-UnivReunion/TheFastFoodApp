@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        displayFragment(new AfficheMenuFragment(),"menu");
     }
 
     public void click(View view){
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity  {
      */
     private void displayFragment(Fragment fragment, String tag){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.framel, fragment, tag);
+        fragmentTransaction.replace(R.id.fragment, fragment, tag);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity  {
         Log.d("dispatch2", "dispatchTouchEvent");
         AfficheMenuFragment afficheMenuFragment = (AfficheMenuFragment) getSupportFragmentManager().findFragmentByTag("menu");
         Log.d("dispatch2", String.valueOf(afficheMenuFragment));
-        if(afficheMenuFragment != null && afficheMenuFragment instanceof AfficheMenuFragment)
+        if(afficheMenuFragment instanceof AfficheMenuFragment)
             afficheMenuFragment.actionDispatchTouchEvent(ev);
         return super.dispatchTouchEvent(ev);
     }

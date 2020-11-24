@@ -31,6 +31,7 @@ public class OffreAdapter extends BaseAdapter {
         this.listOffre = listOffre;
         this.inflater = LayoutInflater.from(context);
         this.databaseManager = databaseManager;
+        Log.d("Panier25", String.valueOf(listOffre));
     }
 
     @Override
@@ -50,6 +51,7 @@ public class OffreAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
+        Log.d("Panier25", "Ajout panier");
 
         view = inflater.inflate(R.layout.adapter_offre,null);
 
