@@ -99,6 +99,7 @@ public class AfficheMenuFragment extends Fragment {
 
     private void initializeDB(){
         // Initialisation du gestionnaire de la BDD
+        Log.d("DBDB", String.valueOf(getActivity()));
         databaseManager = new DatabaseManager(getActivity());
 
         final String SHARED_PREFERENCES_NAME = "DB";

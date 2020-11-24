@@ -85,8 +85,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         Log.i("DATABASE", "insertOffre");
         nom = nom.replace("'","''");
         categorie = categorie.replace("'","''");
+        int pop = populaire?1:0;
         String insert = "insert into Offres (nom, prix, categorie, populaire, imgr) values (" +
-                "'" + nom + "', " + prix + ", '" + categorie+ "' ," + populaire +", " + imgr + " )";
+                "'" + nom + "', " + prix + ", '" + categorie+ "' ," + pop +", " + imgr + " )";
         this.getWritableDatabase().execSQL( insert );
 
     }
