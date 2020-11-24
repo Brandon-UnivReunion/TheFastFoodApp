@@ -54,8 +54,7 @@
                     android:textAlignment="center"
                     android:fontFamily="@font/breeserif"
                     android:textStyle="bold"
-                    android:textAllCaps="true"
-                    android:textSize="17dp"/>
+                    />
 
                 <TextView
                     android:id="@+id/offrePrix"
@@ -66,8 +65,7 @@
                     android:textAlignment="center"
                     android:fontFamily="@font/breeserif"
                     android:textStyle="bold"
-                    android:textAllCaps="true"
-                    android:textSize="17dp"/>
+                    />
             </LinearLayout>
 
         </LinearLayout>

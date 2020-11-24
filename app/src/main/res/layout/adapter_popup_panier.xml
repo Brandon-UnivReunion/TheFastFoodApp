@@ -47,7 +47,9 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:text="@string/menu"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:fontFamily="@font/breeserif"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/itemPrix"
@@ -56,7 +58,9 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:text="@string/euro"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:fontFamily="@font/breeserif"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
         </LinearLayout>

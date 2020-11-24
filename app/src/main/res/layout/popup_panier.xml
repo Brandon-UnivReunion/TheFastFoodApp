@@ -17,7 +17,9 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/blackColor"
+        android:fontFamily="@font/breeserif"/>
 
 
     <LinearLayout
@@ -47,6 +49,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+
+
         <Button
             android:id="@+id/panierValider"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
@@ -56,7 +60,8 @@
             android:layout_margin="15dp"
             android:layout_weight="1"
             android:text="@string/valider"
-            android:textColor="#19A61F" />
+            android:textColor="#19A61F"
+            android:fontFamily="@font/breeserif"/>
 
         <Button
             android:id="@+id/panierVider"
@@ -67,7 +72,8 @@
             android:layout_margin="15dp"
             android:layout_weight="1"
             android:text="@string/vider"
-            android:textColor="#FF0000" />
+            android:textColor="#FF0000"
+            android:fontFamily="@font/breeserif"/>
 
         <Button
             android:id="@+id/panierAnnuler"
@@ -78,7 +84,8 @@
             android:layout_margin="15dp"
             android:layout_weight="1"
             android:text="@string/annuler"
-            android:textColor="#000000" />
+            android:textColor="@color/blackColor"
+            android:fontFamily="@font/breeserif"/>
     </LinearLayout>
 
     <LinearLayout
@@ -101,7 +108,9 @@
             android:textAllCaps="false"
             android:textSize="30sp"
             android:textStyle="bold"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:textColor="@color/blackColor"
+            android:fontFamily="@font/breeserif"/>
 
         <TextView
             android:id="@+id/panierPrixTotal"
@@ -113,7 +122,9 @@
             android:text="@string/zero"
             android:textAlignment="textEnd"
             android:textSize="30sp"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat"
+            android:textColor="@color/blackColor"
+            android:fontFamily="@font/breeserif"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -121,7 +132,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/euro"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textColor="@color/blackColor"
+            android:fontFamily="@font/breeserif"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
