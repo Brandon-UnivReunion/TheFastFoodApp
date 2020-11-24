@@ -8,6 +8,22 @@
     <color name="bgColor">#EDECE3</color>
     <color name="errorColor">#6E0B14</color>
     <color name="blackColor">#151515</color>
+    <color name="whiteColor">#FFFFFF</color>
+
+    <color name="blueWaterColor">#279BCA</color>
+    <color name="redSodaColor">#FE001A</color>
+    <color name="orangeJuiceColor">#FFA500</color>
+    <color name="brownBeerColor">#A86313</color>
+
+    <color name="yellowFriesColor">#DEC12F</color>
+    <color name="yellowCheeseColor">#FFDB58</color>
+    <color name="yellowChikenColor">#DDC252</color>
+    <color name="blueFishColor">#31C4A0</color>
+    <color name="greenVeganColor">#66C263</color>
+    <color name="redMeatColor">#8A2222</color>
+
+    <color name="chocolateColor">#3F1F09</color>
+    <color name="vanillaColor">#f3e5ab</color>
 
     <!-- Bottom Bar -->
 </resources>

@@ -17,7 +17,7 @@
         android:focusableInTouchMode="false"
         android:onClick="clickCardTest"
         android:padding="30dp"
-        app:cardBackgroundColor="#EEEEE4"
+        app:cardBackgroundColor="@color/whiteColor"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

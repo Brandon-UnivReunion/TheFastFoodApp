@@ -5,8 +5,8 @@ import com.example.thefastfood.menus.dataBase.DatabaseManager;
 public class ListOffresBurger extends ListOffres {
     public ListOffresBurger(DatabaseManager dm) {
         super();
-        title = "Burger";
-        list = dm.readOffre("categorie = 'burger'");
+        title = "Burgers";
+        list = dm.readOffre("categorie = 'burgers'");
     }
 }
 

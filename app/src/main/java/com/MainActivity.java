@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
 
-    LinearLayout bottomBar_item1, bottomBar_item2, bottomBar_item3, empty_basket;
+    LinearLayout bottomBar_item1, bottomBar_item2, bottomBar_item3, empty_basket, powerBtn;
     ImageView item1IV, item2IV, item3IV;
     TextView item1TV, item2TV, item3TV;
 
@@ -91,7 +91,15 @@ public class MainActivity extends AppCompatActivity {
         item2TV = findViewById(R.id.item2TV);
         item3TV = findViewById(R.id.item3TV);
 
+        powerBtn = findViewById(R.id.powerBtn);
         empty_basket = findViewById(R.id.empty_basket);
+
+        powerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
 
         empty_basket.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
             showFragment(new AfficheMenuFragment(), "menu");
             System.out.println("Shop Selected from main");
         }else{
-            bottomBar_item1.setBackgroundColor(Color.rgb(237,236,227));
+            bottomBar_item1.setBackgroundColor(Color.rgb(255,255,255));
             item1TV.setTextColor(Color.rgb(21,21,21));
             item1IV.setImageResource(R.drawable.store);
         }
@@ -201,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
             showFragment(new ProfileFragment());
             System.out.println("Profile Selected from main");
         }else{
-            bottomBar_item2.setBackgroundColor(Color.rgb(237,236,227));
+            bottomBar_item2.setBackgroundColor(Color.rgb(255,255,255));
             item2TV.setTextColor(Color.rgb(21,21,21));
             item2IV.setImageResource(R.drawable.profile);
         }
@@ -215,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("Shop Selected from main");
 
         }else{
-            bottomBar_item3.setBackgroundColor(Color.rgb(237,236,227));
+            bottomBar_item3.setBackgroundColor(Color.rgb(255,255,255));
             item3TV.setTextColor(Color.rgb(21,21,21));
             item3IV.setImageResource(R.drawable.location);
         }

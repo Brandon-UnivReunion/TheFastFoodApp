@@ -6,6 +6,6 @@ public class ListOffresSalades  extends ListOffres {
     public ListOffresSalades(DatabaseManager dm) {
         super();
         title = "Salades";
-        list = dm.readOffre("categorie = 'salade'");
+        list = dm.readOffre("categorie = 'salads'");
     }
 }

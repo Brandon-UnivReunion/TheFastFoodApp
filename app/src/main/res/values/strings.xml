@@ -42,6 +42,7 @@
     <string name="profileItem">Profil</string>
 
     <!-- Fragment Map -->
+    <string name="mapItem">Map</string>
 
 
     <string name="menu">menu</string>
