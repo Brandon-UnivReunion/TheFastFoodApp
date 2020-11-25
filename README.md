@@ -2,7 +2,7 @@
 Projet fast food pour dev mobile M1 Info
 
 ## Lien associé au projet
- - Lien des slides sur overleaf : 
+ - Lien des slides sur overleaf : https://www.overleaf.com/read/txtnggmcstfx
 
 ## Description
 The Fast-Food est une application mobile permettant à l'utilisateur de commander des repas.
