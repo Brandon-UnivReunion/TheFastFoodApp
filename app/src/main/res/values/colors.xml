@@ -9,6 +9,8 @@
     <color name="errorColor">#6E0B14</color>
     <color name="blackColor">#151515</color>
     <color name="whiteColor">#FFFFFF</color>
+    <color name="greyColor">#808080</color>
+    <color name="darkGreyColor">#696969</color>
 
     <color name="blueWaterColor">#279BCA</color>
     <color name="redSodaColor">#FE001A</color>

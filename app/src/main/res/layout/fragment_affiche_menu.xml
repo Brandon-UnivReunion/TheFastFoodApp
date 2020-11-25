@@ -14,7 +14,9 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="TextView"
-        app:autoSizeTextType="uniform" />
+        app:autoSizeTextType="uniform"
+        android:fontFamily="@font/breeserif"
+        android:textColor="@color/blackColor"/>
 
     <GridView
         android:id="@+id/menu_gridview"

@@ -6,10 +6,44 @@
 
     <!-- Global-->
     <string name="error">Erreur !</string>
+    <string name="success">Succès !</string>
 
     <!-- Edit Profil Screen-->
     <string name="username"> Pseudo </string>
     <string name="phoneNum"> N° de téléphone </string>
+    <string name="mail">Adresse mail</string>
+    <string name="editBtn">Modifier</string>
+
+    <string name="dialogTitle"> Choisissez une action</string>
+    <string name="editProfilPic"> Editer l\'image de profil</string>
+    <string name="editCoverPic"> Editer l\'image de couverture</string>
+    <string name="editProfileName"> Editer le nom</string>
+    <string name="editProfilePhone"> Editer le numéro de téléphone</string>
+
+    <string name="messUpdatePic">Modification de l\'image de profil</string>
+    <string name="messUpdateCover">Modification de l\'image de couverture</string>
+    <string name="messUpdateName">Modification du nom</string>
+    <string name="messUpdatePhone">Modification du numéro de téléphone</string>
+    <string name="updateName">Modifier votre nom</string>
+    <string name="updatePhone">Modifier votre numéro de téléphone</string>
+
+    <string name="camera">Caméra</string>
+    <string name="gallery">Galerie</string>
+    <string name="pickImg">Choisissez le support</string>
+
+    <string name="nameUpdateET">Nom</string>
+    <string name="phoneUpdateET">Numéro de téléphone</string>
+
+    <string name="updateText">Modifier</string>
+    <string name="cancelUpdateBtn">Annuler</string>
+
+    <string name="errorETName">Veuillez entrer un nom</string>
+    <string name="errorETPhone">Veuillez entrer un numéro de téléphone</string>
+
+    <string name="toastRequestCDenied">Veuillez autoriser la permission d\'accès à la caméra et au gestionnaire de fichiers</string>
+    <string name="toastRequestGDenied">Veuillez autoriser la permission d\'accès au gestionnaire de fichiers</string>
+
+
 
     <!-- Ecran de connexion -->
     <string name="addressMail">Adresse Mail</string>
@@ -62,6 +96,5 @@
     <string name="annuler">Annuler</string>
     <string name="totalPrix">"Total : "</string>
     <string name="zero">0</string>
-
 
 </resources>
