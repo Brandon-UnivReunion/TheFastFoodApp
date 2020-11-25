@@ -19,11 +19,16 @@ import com.example.thefastfood.menus.item.Offre;
 
 import java.util.ArrayList;
 
+/**
+ * Adapter de la list view qui affiche le shop
+ */
 public class OffreAdapter extends BaseAdapter {
 
     protected Context context;
+    // Liste d'offre à afficher
     protected ArrayList<Offre> listOffre;
     protected LayoutInflater inflater;
+    // Base Manager de notre BDD
     protected DatabaseManager databaseManager;
 
     public OffreAdapter(Context context, ArrayList<Offre> listOffre, DatabaseManager databaseManager) {
@@ -31,7 +36,7 @@ public class OffreAdapter extends BaseAdapter {
         this.listOffre = listOffre;
         this.inflater = LayoutInflater.from(context);
         this.databaseManager = databaseManager;
-        Log.d("Panier25", String.valueOf(listOffre));
+//        Log.d("Panier25", String.valueOf(listOffre));
     }
 
     @Override
@@ -51,12 +56,15 @@ public class OffreAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
-        Log.d("Panier25", "Ajout panier");
+//        Log.d("Panier25", "Ajout panier");
 
+        // Charge la vue de l'adapter
         view = inflater.inflate(R.layout.adapter_offre,null);
 
+        // Recuperation de l'offre à afficher
         final Offre offre = getItem(i);
 
+        // Mise à jour de l'interface
         TextView name = view.findViewById(R.id.offreName);
         name.setText(offre.getName());
 
@@ -68,11 +76,13 @@ public class OffreAdapter extends BaseAdapter {
 
         CardView cardView = view.findViewById(R.id.cardView);
 
+        // Gestion des acchats
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Ajout au panier des éléments
-                Log.d("Panier", "Ajout panier");
+//                Log.d("Panier", "Ajout panier");
+
+                // Ajout au panier des éléments > ajout de l'id de l'offre comme clé étrangére dans la table Panier
                 databaseManager.insertItem(offre.getId());
 
                 // Notifier que le panier à été utilisé
@@ -81,7 +91,7 @@ public class OffreAdapter extends BaseAdapter {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("panier", true);
                 editor.apply();
-
+                // Informe l'utilisateur de la prise en compte de son ajout au panier
                 Toast.makeText(context, "Ajout "+offre.getName()+" au panier", Toast.LENGTH_SHORT).show();
 
             }
@@ -94,7 +104,4 @@ public class OffreAdapter extends BaseAdapter {
     }
 
 
-    public void setListOffre(ArrayList<Offre> listOffre) {
-        this.listOffre = listOffre;
-    }
 }

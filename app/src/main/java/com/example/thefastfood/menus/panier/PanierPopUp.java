@@ -21,11 +21,19 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
+/**
+ * Panier sous forme de popup
+ */
 public class PanierPopUp extends Dialog {
+    // Les view du popup
     private ListView listView;
     private TextView prixTotal;
     private Button valideButton, videButton, annuleButton;
+
+    // Lui même
     private PanierPopUp panierPopUp;
+
+    // Manager de la BDD
     private DatabaseManager databaseManager;
 
     public PanierPopUp(final Activity context, DatabaseManager dm) {
@@ -33,7 +41,6 @@ public class PanierPopUp extends Dialog {
         setContentView(R.layout.popup_panier);
 
         databaseManager = dm;
-
 
         panierPopUp = this;
 

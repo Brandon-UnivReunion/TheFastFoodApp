@@ -44,7 +44,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".menus.toolbar.MenuToolbarActivity" />
 
         <activity
             android:name="com.activities.LoginActivity"

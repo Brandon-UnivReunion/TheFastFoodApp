@@ -12,6 +12,9 @@ import com.example.thefastfood.menus.item.Offre;
 
 import java.util.ArrayList;
 
+/**
+ * Manager de la BDD
+ */
 public class DatabaseManager extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "References.db";
@@ -35,7 +38,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i("DATABASE", "onCreate");
-        // Table des offres
+        // Creation table des offres
         String strSql = "create table Offres ("
                 + "    id integer primary key autoincrement,"
                 + "    nom text not null,"
@@ -46,16 +49,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 + ")";
         db.execSQL( strSql );
 
-        // Table du panier
+        // Creation table du panier
         strSql = "create table Panier ("
                 + "    id integer primary key autoincrement,"
                 + "    idOffre integer not null"
                 + ")";
         db.execSQL( strSql );
 
-        // TODO historique d'achat
 
-//        CreateurMenu.initialInsert(this);
 
     }
 
@@ -75,11 +76,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     /**
      * Insert une offre dans la table offre
-     * @param nom
-     * @param prix
-     * @param categorie
-     * @param populaire
-     * @param imgr
+     * @param nom de l'offre
+     * @param prix de l'offre
+     * @param categorie de l'offre
+     * @param populaire poularité
+     * @param imgr Ressource de l'img
      */
     public void insertOffre(String nom, int prix, String categorie, boolean populaire, int imgr ){
         Log.i("DATABASE", "insertOffre");
@@ -94,7 +95,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     /**
      * Renvoie la selection sur la table offre sous forme de liste d'offres
-     * @param condition
+     * @param condition de la selection
      * @return
      */
     public ArrayList<Offre> readOffre(@Nullable String condition){
@@ -119,7 +120,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     /**
      * Insert un item au panier
-     * @param idOffre
+     * @param idOffre clé étrangére liées à la table Offres
      */
     public void insertItem(int idOffre){
         Log.i("DATABASE", "insertItem");
@@ -129,7 +130,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     /**
      * Renvoie la liste des offres associé au panier
-     * @return
+     * @return La liste du panier
      */
     public ArrayList<Offre> readPanier(){
         ArrayList<Offre> offres = new ArrayList<Offre>();
@@ -162,7 +163,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     /**
-     * Validation du panier
+     * Validation du panier >> le vide
      */
     public void validePanier(){
         String delete = "delete from Panier" ;
