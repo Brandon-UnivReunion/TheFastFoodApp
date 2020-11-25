@@ -27,8 +27,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.text.DecimalFormat;
 
 ///**
 // * A simple {@link Fragment} subclass.
@@ -37,11 +41,24 @@ import com.google.android.gms.maps.model.MarkerOptions;
 // */
 public class MapsFragment extends Fragment implements LocationListener {
 
+    // Gestion de la localisation
     private LocationManager locationManager;
+
+    // Gestion de la carte
     private SupportMapFragment mapFragment;
     private GoogleMap googleMap;
 
+    // Position de l'utilisateur
+    private LatLng userLatLng;
+
+    // Distance de l'utilisateur avec Fast Food
+    private double userDistance;
+
+    // Request code pour gerer les permissions
     private static final int PERMS_ID = 1999;
+
+    // Position du FastFood
+    private static final LatLng FAST_FOOD_LAT_LNG = new LatLng(-20.905484263583407, 55.50019844285975);
 
 
 
@@ -51,24 +68,15 @@ public class MapsFragment extends Fragment implements LocationListener {
     }
 
 
-
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        // Création de la vue principale
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
-//        SupportMapFragment fragmentManager =
+
+        // Recuperation du SupportMapFragment
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapFrag);
         Log.d("testeur405", String.valueOf(mapFragment));
-                //fragmentManager.findFragmentById(R.id.mapFrag);
 
         // Inflate the layout for this fragment
         return view;
@@ -78,6 +86,8 @@ public class MapsFragment extends Fragment implements LocationListener {
     public void onResume() {
         super.onResume();
         Log.d("testeur405", String.valueOf(mapFragment));
+
+        // Verifie les permission
         checkPermission();
     }
 
@@ -89,9 +99,14 @@ public class MapsFragment extends Fragment implements LocationListener {
         }
     }
 
+    /**
+     * Verifie si les permission nécessaire à la localisation sont accordés sinon les demandes + chargement de la carte
+     */
     private void checkPermission(){
+        // Récupères l'activité appelante
         Activity activity = getActivity();
 
+        // Gestion des permission
         locationManager = (LocationManager) activity.getSystemService(activity.LOCATION_SERVICE);
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -111,9 +126,17 @@ public class MapsFragment extends Fragment implements LocationListener {
         if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, this);
         }
+
+        // Charge la carte
         loadMap();
     }
 
+    /**
+     * Traitement des permission
+     * @param requestCode code de la requete de permission
+     * @param permissions les permission demandées
+     * @param grantResults les permissions accordées
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -122,15 +145,55 @@ public class MapsFragment extends Fragment implements LocationListener {
         }
     }
 
+    /**
+     * Charge la carte googleMap et l'initialise
+     */
     private void loadMap(){
+        // Carte prête
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @SuppressLint("MissingPermission")
             @Override
             public void onMapReady(GoogleMap googleMap) {
+                // On récupère la map
                 MapsFragment.this.googleMap = googleMap;
-                googleMap.moveCamera(CameraUpdateFactory.zoomBy(100));
+
+
+
+//                googleMap.setMinZoomPreference(100);
+//                googleMap.setMaxZoomPreference(1000);
+
+                // Permettre le centrage sur la position du telephone
                 googleMap.setMyLocationEnabled(true);
-                googleMap.addMarker(new MarkerOptions().position(new LatLng(43.799, 6.725)).title("The Fast Food"));
+
+                // Type de carte
+                googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+                // Placement de la caméra et zoom
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(FAST_FOOD_LAT_LNG, 15f));
+
+                // Marker localisation de FastFood
+                final MarkerOptions mFastfood = new MarkerOptions()
+                        .position(FAST_FOOD_LAT_LNG)
+                        .title("The Fast Food")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                googleMap.addMarker(mFastfood);
+
+                // Gestion des clic sur le marquer de FastFood ==> Affichage du clic sur l'icone
+                googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener(){
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        if(userLatLng != null && marker.getTitle().equals("The Fast Food") ){
+                            if(  userDistance >= 1000){
+                                DecimalFormat df = new DecimalFormat("###.###");
+                                Toast.makeText(getActivity(), String.format("Vous êtes à %s km", df.format(userDistance/1000)) , Toast.LENGTH_LONG  ).show();
+                            }else{
+                                Toast.makeText(getActivity(), String.format("Vous êtes à %d m", (int) userDistance), Toast.LENGTH_LONG  ).show();
+                            }
+                        }
+
+                        return false;
+                    }
+                });
             }
         });
     }
@@ -142,25 +205,43 @@ public class MapsFragment extends Fragment implements LocationListener {
      */
     @Override
     public void onLocationChanged(@NonNull Location location) {
+        // Mises à jour de la position de l'utilisateur
         double lat = location.getLatitude();
-        double longi = location.getLongitude();
+        double lng = location.getLongitude();
+        userLatLng = new LatLng(lat, lng);
 
-        Toast.makeText(getActivity(), "Location :" + lat + " , " + longi, Toast.LENGTH_LONG  ).show();
-        if (googleMap != null){
-            LatLng googleLocation = new LatLng(lat, longi);
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(googleLocation));
-        }
+        // Distance de l'utilisateur au fastfood
+        userDistance = getDistance(FAST_FOOD_LAT_LNG, userLatLng);
+
     }
 
-//    /**
-//     * This callback will never be invoked on Android Q and above, and providers can be considered
-//     * as always in the {@link LocationProvider#AVAILABLE} state.
-//     *
-//     * @param provider
-//     * @param status
-//     * @param extras
-//     * @deprecated This callback will never be invoked on Android Q and above.
-//     */
+    /**
+     * Calcule la distance en deux LatLng
+     * @param l1 LatLng 1
+     * @param l2 LatLng 2
+     * @return distance entre LatLng 1 et LatLng 2
+     */
+    public double getDistance(LatLng l1, LatLng l2){
+        Location loc1 = new Location("");
+        loc1.setLatitude(l1.latitude);
+        loc1.setLongitude(l1.longitude);
+
+        Location loc2 = new Location("");
+        loc2.setLatitude(l2.latitude);
+        loc2.setLongitude(l2.longitude);
+
+        return loc1.distanceTo(loc2);
+    }
+
+    /**
+     * This callback will never be invoked on Android Q and above, and providers can be considered
+     * as always in the state.
+     *
+     * @param provider
+     * @param status
+     * @param extras
+     * @deprecated This callback will never be invoked on Android Q and above.
+     */
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
 
@@ -187,4 +268,7 @@ public class MapsFragment extends Fragment implements LocationListener {
     public void onProviderDisabled(@NonNull String provider) {
 
     }
+
+
+
 }
