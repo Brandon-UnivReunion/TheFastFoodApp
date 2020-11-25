@@ -32,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -100,8 +101,8 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email = signInMail.getText().toString();
-                final String pass = signInPass.getText().toString();
+                final String email = Objects.requireNonNull(signInMail.getText()).toString();
+                final String pass = Objects.requireNonNull(signInPass.getText()).toString();
 
                 //Si champ Email vide
                 if (TextUtils.isEmpty(email)){
@@ -204,6 +205,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
+                assert account != null;
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
@@ -219,7 +221,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param idToken Token utilisé pour la connexion Google
      */
     private void firebaseAuthWithGoogle(String idToken) {
-        final String username = getString(R.string.username).trim();;
+        final String username = getString(R.string.username).trim();
         final String phoneN = getString(R.string.phoneNum);
 
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken,null);
@@ -232,9 +234,10 @@ public class LoginActivity extends AppCompatActivity {
                                     FirebaseUser user = auth.getCurrentUser();
 
                                     //Si l'utilisateur se connecte pour la première fois
-                                    if(task.getResult().getAdditionalUserInfo().isNewUser()){
+                                    if(Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getAdditionalUserInfo()).isNewUser()){
 
                                         //Récupération du mail et de l'id
+                                        assert user != null;
                                         String email = user.getEmail();
                                         String uid = user.getUid();
 
@@ -260,6 +263,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
 
                                     // Redirection vers l'activité principale
+                                    assert user != null;
                                     Toast.makeText(LoginActivity.this, ""+user.getEmail(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
 
-    LinearLayout bottomBar_item1, bottomBar_item2, bottomBar_item3, empty_basket, powerBtn;
+    LinearLayout bottomBar_item1, bottomBar_item2, bottomBar_item3, empty_basket, powerBtn, logoBtn;
     ImageView item1IV, item2IV, item3IV;
     TextView item1TV, item2TV, item3TV;
 
@@ -90,12 +90,19 @@ public class MainActivity extends AppCompatActivity {
         item3TV = findViewById(R.id.item3TV);
 
         powerBtn = findViewById(R.id.powerBtn);
+        logoBtn = findViewById(R.id.logoBtn);
         empty_basket = findViewById(R.id.empty_basket);
 
         powerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signOut();
+            }
+        });
+        logoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFragment(new AfficheMenuFragment(), "menu");
             }
         });
 

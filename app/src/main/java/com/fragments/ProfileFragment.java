@@ -73,8 +73,8 @@ public class ProfileFragment extends Fragment {
     private static final int IMAGE_PICK_CAMERA_REQUEST_CODE = 400;
 
     //Listes des requêtes des permissions
-    String cameraPermissions[];
-    String storagePermissions[];
+    String[] cameraPermissions;
+    String[] storagePermissions;
 
     //Uri de l'image choisie
     Uri image_uri;
@@ -177,8 +177,7 @@ public class ProfileFragment extends Fragment {
      * @return true si le "storage" est choisi, sinon false
      */
     private boolean checkStoragePermission(){
-        boolean result = ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
-        return result;
+        return ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
     }
 
     /**
@@ -193,7 +192,7 @@ public class ProfileFragment extends Fragment {
      * @return true si la permission caméra et accès en écriture sont vérifiés.
      */
     private boolean checkCameraPermission(){
-        boolean result = ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
+        boolean result = ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
         boolean result1 = ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return result && result1;
     }
@@ -227,7 +226,7 @@ public class ProfileFragment extends Fragment {
         final String updateName = getString(R.string.messUpdateName);
         final String updatePhone = getString(R.string.messUpdatePhone);
 
-        String options[] = {editProfilePic, editCoverPic, editName, editPhoneN};
+        String[] options = {editProfilePic, editCoverPic, editName, editPhoneN};
 
         //Dialogue d'alerte
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -275,7 +274,7 @@ public class ProfileFragment extends Fragment {
     private void showNamePhoneUpdateDialog(final String key) {
         //dialog custom
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        if (key == "name") {
+        if (key.equals("name")) {
             builder.setTitle(getString(R.string.updateName));
         } else {
             builder.setTitle(getString(R.string.updatePhone));
@@ -288,7 +287,7 @@ public class ProfileFragment extends Fragment {
         final EditText editText = new EditText(getActivity());
 
         // ajout d'un texte selon le type de modification
-        if (key == "name") {
+        if (key.equals("name")) {
             editText.setHint(getString(R.string.nameUpdateET));
         } else {
             editText.setHint(getString(R.string.phoneUpdateET));
@@ -326,7 +325,7 @@ public class ProfileFragment extends Fragment {
                     });
 
                 } else {
-                    if (key == "name") {
+                    if (key.equals("name")) {
                         Toast.makeText(getActivity(), getString(R.string.errorETName), Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity(), getString(R.string.errorETPhone), Toast.LENGTH_SHORT).show();
@@ -358,7 +357,7 @@ public class ProfileFragment extends Fragment {
         String gallery = getString(R.string.gallery);
 
         String pickImg = getString(R.string.pickImg);
-        String options[] = {camera, gallery };
+        String[] options = {camera, gallery };
 
         //Dialogue d'alerte
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -449,6 +448,7 @@ public class ProfileFragment extends Fragment {
         if(resultCode == RESULT_OK){
             if(requestCode == IMAGE_PICK_GALLERY_REQUEST_CODE){
                 //Image prise depuis  la galerie, on récupère l'uri de l'image
+                assert data != null;
                 image_uri = data.getData();
 
                 uploadProfileCoverPhoto(image_uri);
@@ -494,6 +494,7 @@ public class ProfileFragment extends Fragment {
                     HashMap<String, Object> results = new HashMap<>();
                     //Le premier paramètre correspond à la modification effectuée(cover ou profile picture)
                     //Le second à l'url de l'image
+                    assert downloadUri != null;
                     results.put(profileOrCoverImg, downloadUri.toString());
 
                     databaseReference.child(user.getUid()).updateChildren(results).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -538,7 +539,7 @@ public class ProfileFragment extends Fragment {
         values.put(MediaStore.Images.Media.TITLE, "Temp Pic");
         values.put(MediaStore.Images.Media.DESCRIPTION, "Temp Description");
         //Mise en place de l'image uri
-        image_uri = getActivity().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        image_uri = Objects.requireNonNull(getActivity()).getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
         //Instance pour lancer la camera
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

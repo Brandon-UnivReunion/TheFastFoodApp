@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -72,8 +73,8 @@ public class RegisterActivity extends AppCompatActivity {
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = signUpMail.getText().toString().trim();;
-                String pass = signUpPass.getText().toString();
+                String email = Objects.requireNonNull(signUpMail.getText()).toString().trim();
+                String pass = Objects.requireNonNull(signUpPass.getText()).toString();
 
                 final String username = getString(R.string.username);
                 final String phoneN = getString(R.string.phoneNum);
@@ -101,7 +102,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), R.string.short_pw, Toast.LENGTH_LONG).show();
                     errorTextViewRA.setText(R.string.short_pw);
                     signUpPass.setError("Error");
-                    return;
                 }else{
                     auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -115,6 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 //Récupération du
                                 FirebaseUser user = auth.getCurrentUser();
 
+                                assert user != null;
                                 String email = user.getEmail();
                                 String uid = user.getUid();
 

@@ -16,7 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
@@ -64,7 +65,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String email = mailAddr.getText().toString().trim();
+                String email = Objects.requireNonNull(mailAddr.getText()).toString().trim();
 
                 //Si champ mail vide
                 if(TextUtils.isEmpty(email)){

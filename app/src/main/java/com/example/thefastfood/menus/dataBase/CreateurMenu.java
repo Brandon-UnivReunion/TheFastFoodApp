@@ -13,21 +13,21 @@ public class CreateurMenu {
     public static void initialInsert(DatabaseManager dbm){
 
         //Burgers
-        dbm.insertOffre("Essentiel", 6, BURGERS, POPULAR, R.drawable.meat_burger);
-        dbm.insertOffre("Envoûtant", 5, BURGERS, POPULAR, R.drawable.chiken_burger);
-        dbm.insertOffre("Indomptable", 4, BURGERS, false, R.drawable.fish_burger);
-        dbm.insertOffre("Rabatjoie", 4, BURGERS, false, R.drawable.vegan_burger);
+        dbm.insertOffre("Burger Bo", 6, BURGERS, POPULAR, R.drawable.meat_burger);
+        dbm.insertOffre("Burger Pou", 5, BURGERS, POPULAR, R.drawable.chiken_burger);
+        dbm.insertOffre("Burger Poi", 4, BURGERS, false, R.drawable.fish_burger);
+        dbm.insertOffre("Burger Veg", 4, BURGERS, false, R.drawable.vegan_burger);
 
         //Salad
-        dbm.insertOffre("Printemps", 6, SALADS, false, R.drawable.only_salad);
-        dbm.insertOffre("Ferme", 6, SALADS, false, R.drawable.chiken_salad);
+        dbm.insertOffre("Salade V", 6, SALADS, false, R.drawable.only_salad);
+        dbm.insertOffre("Salade P", 6, SALADS, false, R.drawable.chiken_salad);
 
         //Snacks
         dbm.insertOffre("Frites S", 1, SNACKS, false, R.drawable.small_fries);
         dbm.insertOffre("Frites M", 2, SNACKS, false, R.drawable.medium_fries);
         dbm.insertOffre("Frites L", 4, SNACKS, POPULAR, R.drawable.large_fries);
-        dbm.insertOffre("Chees x5", 5, SNACKS, POPULAR, R.drawable.cheese_snack);
-        dbm.insertOffre("Chiks x5", 5, SNACKS, POPULAR, R.drawable.chiken_snack);
+        dbm.insertOffre("Cheeses x5", 5, SNACKS, POPULAR, R.drawable.cheese_snack);
+        dbm.insertOffre("Chikens x5", 5, SNACKS, POPULAR, R.drawable.chiken_snack);
         dbm.insertOffre("Panés", 4, SNACKS, false, R.drawable.fish_snack);
 
         //Desserts
