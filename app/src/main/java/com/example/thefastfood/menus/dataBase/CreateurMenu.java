@@ -2,7 +2,11 @@ package com.example.thefastfood.menus.dataBase;
 
 import com.example.thefastfood.R;
 
+/**
+ * Gestionnaires des offres
+ */
 public class CreateurMenu {
+    // Constante du menus
     public static boolean POPULAR = true;
     public static String SNACKS = "snacks";
     public static String DRINKS = "drinks";
@@ -10,6 +14,10 @@ public class CreateurMenu {
     public static String DESSERTS = "desserts";
     public static String SALADS = "salads";
 
+    /**
+     * Insertion initiale des offres lors de l'installation
+     * @param dbm
+     */
     public static void initialInsert(DatabaseManager dbm){
 
         //Burgers

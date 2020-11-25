@@ -1,7 +1,9 @@
 package com.example.thefastfood.menus.item;
 
-import androidx.annotation.Nullable;
 
+/**
+ * Classe qui represente une offre
+ */
 public class Offre{
     // code de l'image representant l'offre dans les ressources
     int pathImg;

@@ -4,6 +4,9 @@ import com.example.thefastfood.menus.item.Offre;
 
 import java.util.ArrayList;
 
+/**
+ * Liste offres générique
+ */
 public class ListOffres {
     protected String title;
     protected ArrayList<Offre> list;

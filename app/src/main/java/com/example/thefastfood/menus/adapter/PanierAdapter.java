@@ -19,10 +19,15 @@ import com.example.thefastfood.menus.item.Offre;
 
 import java.util.ArrayList;
 
+/**
+ * Adapteur de la listView de l'affichage du panier
+ */
 public class PanierAdapter extends BaseAdapter {
     protected Context context;
+    // List des item à afficher
     protected ArrayList<Offre> listItem;
     protected LayoutInflater inflater;
+    // Manager de la base de donnée
     protected DatabaseManager databaseManager;
 
     public PanierAdapter(Context context,  DatabaseManager databaseManager) {
@@ -50,10 +55,12 @@ public class PanierAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
-        Log.d("PanierAdapterDD", String.valueOf(i));
+//        Log.d("PanierAdapterDD", String.valueOf(i));
         view = inflater.inflate(R.layout.adapter_popup_panier,null);
 
+        // Offre courante à afficher
         final Offre offre = getItem(i);
+
 
         TextView name = view.findViewById(R.id.itemName);
         name.setText(offre.getName());
@@ -63,21 +70,6 @@ public class PanierAdapter extends BaseAdapter {
 
         TextView prix = view.findViewById(R.id.itemPrix);
         prix.setText(offre.getPrix()+context.getString(R.string.euro));
-
-//        CardView cardView = view.findViewById(R.id.cardView);
-//
-//        cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Ajout au panier des éléments
-//                Log.d("Panier", "Ajout panier");
-//                databaseManager.insertItem(offre.getId());
-//                Toast.makeText(context, "Ajout "+offre.getName()+" au panier", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-
-
 
 
         return view;

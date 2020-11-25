@@ -31,15 +31,17 @@ import com.example.thefastfood.menus.panier.PanierPopUp;
 
 import java.util.ArrayList;
 
-
+/**
+ * Fragment du store
+ */
 public class AfficheMenuFragment extends Fragment {
 
-    TextView titleTV;
-    GridView gridView;
-    ArrayList<ListOffres> packOffres;
-    int idPack;
-    MyGestureDetectorListener myGestureDetectorListener;
-    DatabaseManager databaseManager;
+    private TextView titleTV;
+    private GridView gridView;
+    private ArrayList<ListOffres> packOffres;
+    private int idPack;
+    private MyGestureDetectorListener myGestureDetectorListener;
+    private DatabaseManager databaseManager;
 
 
 
@@ -52,18 +54,16 @@ public class AfficheMenuFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // TODO initialize db on view
+        // Vue associé au fragment
         View fragmentView = inflater.inflate(R.layout.fragment_affiche_menu, container, false);
+
         Log.i("Main", "onCreate");
+
         // initialisation de la BDD et remplissage si c'est le premier lancement
         initializeDB();
         Log.i("Main", "onCreate2");
@@ -80,6 +80,7 @@ public class AfficheMenuFragment extends Fragment {
         packOffres.add(new ListOffresDessert(databaseManager));
         packOffres.add(new ListOffresDrink(databaseManager));
 
+        // id de la liste d'offres courantes
         idPack = 0;
 
         // Recuperes la textview
@@ -96,16 +97,9 @@ public class AfficheMenuFragment extends Fragment {
         return fragmentView;
     }
 
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Initialise la base de données (la crée si il n'existe pas)
+     */
     private void initializeDB(){
         // Initialisation du gestionnaire de la BDD
         Log.d("DBDB", String.valueOf(getActivity()));
@@ -120,8 +114,10 @@ public class AfficheMenuFragment extends Fragment {
 
         if(!sharedPreferences.getBoolean(FLAG_DB, false)){
             Log.i("SharedP", "false");
+
             // On fait l'insertion des offres
             CreateurMenu.initialInsert(databaseManager);
+
             // On mets à jour l'etat du remplissage
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(FLAG_DB, true);
@@ -134,23 +130,6 @@ public class AfficheMenuFragment extends Fragment {
 
 
 
-
-
-
-    public void panierClick(View view){
-        final String SHARED_PREFERENCES_NAME = "DB";
-
-        // Persistence pour savoir si le panier à déjà été utilisé
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-
-
-        if(sharedPreferences.getBoolean("panier", false) && databaseManager.readPanier().size() != 0) {
-            PanierPopUp panierPopUp = new PanierPopUp(getActivity(), databaseManager);
-            panierPopUp.show();
-        }else{
-            Toast.makeText(getActivity(), "Le panier est vide !", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 
 
@@ -173,7 +152,10 @@ public class AfficheMenuFragment extends Fragment {
         private static final int SWIPE_MIN_DISTANCE = 120;
         private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
-
+        /**
+         * Gesture listener pour detecter et gérer le swipe sur le shop
+         * @param context de l'appli
+         */
         public MyGestureDetectorListener(final Context context) {
             super(context, new GestureDetector.SimpleOnGestureListener(){
                 /**
